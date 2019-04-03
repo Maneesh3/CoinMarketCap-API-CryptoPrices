@@ -20,6 +20,7 @@ session.headers.update(headers)
 try:
     response = session.get(url, params=parameters)
     data = json.loads(response.text)
-    print(data)
+    price = data.get('data')[0].get('quote').get('USD').get('price')
+    print('$ '+ str(price))
 except (ConnectionError, Timeout, TooManyRedirects) as e:
     print(e)
